@@ -39,6 +39,11 @@ class ProductsController < ApplicationController
     @product.destroy
   end
 
+  def recommendations
+    recommendations = Product.recommend_for(@current_user)
+    render json: recommendations.map { |product| format_product(product) }, status: :ok
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
@@ -48,5 +53,15 @@ class ProductsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def product_params
       params.require(:product).permit(:name, :description, :price, :stock)
+    end
+
+    def format_product(product)
+      {
+        id: product.id,
+        name: product.name,
+        description: product.description,
+        price: product.price,
+        stock: product.stock
+      }
     end
 end
