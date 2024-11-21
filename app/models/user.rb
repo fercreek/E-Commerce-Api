@@ -5,4 +5,5 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   has_many :orders, dependent: :destroy
+  has_many :purchased_products, through: :orders, source: :order_items
 end
