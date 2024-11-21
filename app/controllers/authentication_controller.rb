@@ -3,7 +3,6 @@ class AuthenticationController < ApplicationController
 
   SECRET_KEY = Rails.application.secrets.secret_key_base.to_s
 
-  # Registro de usuarios
   def signup
     user = User.new(user_params)
     if user.save
@@ -13,7 +12,6 @@ class AuthenticationController < ApplicationController
     end
   end
 
-  # Inicio de sesión
   def login
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
