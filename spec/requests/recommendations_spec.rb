@@ -8,7 +8,6 @@ RSpec.describe 'Recommendations', type: :request do
   let!(:category2_products) { create_list(:product, 3, category: 'Books') }
 
   before do
-    # Simular compras en una categoría
     order = create(:order, user: user)
     create(:order_item, order: order, product: category1_products[0])
   end

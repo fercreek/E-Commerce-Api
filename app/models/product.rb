@@ -12,7 +12,6 @@ class Product < ApplicationRecord
 
     joins(:order_items)
       .where(category: purchased_categories)
-      .where.not(id: user.purchased_products.pluck(:product_id))
       .group(:id)
       .order('COUNT(order_items.id) DESC')
       .limit(5)

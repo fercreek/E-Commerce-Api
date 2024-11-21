@@ -52,7 +52,8 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :description, :price, :stock)
+      params.require(:product).
+            permit(:name, :description, :price, :stock, :category)
     end
 
     def format_product(product)
@@ -61,6 +62,7 @@ class ProductsController < ApplicationController
         name: product.name,
         description: product.description,
         price: product.price,
+        category: product.category,
         stock: product.stock
       }
     end

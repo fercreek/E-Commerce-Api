@@ -17,6 +17,7 @@ RSpec.describe 'Products', type: :request do
   describe 'POST /products' do
     it 'creates a new product with valid data' do
       product_params = attributes_for(:product)
+      puts product_params
       post '/products', params: { product: product_params }, headers: headers
       expect(response).to have_http_status(:created)
     end
